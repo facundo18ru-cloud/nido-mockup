@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro — Nido</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="registro.html">
+
+<div id="demo-bar"></div>
+<div id="site-header"></div>
+
+<section class="section-tight">
+  <div class="wrap" style="max-width:560px;">
+    <div class="steps">
+      <div class="step current">1. Registro</div>
+      <div class="step">2. Perfil</div>
+      <div class="step">3. Activo</div>
+    </div>
+
+    <div class="card card-pad">
+      <h2 style="font-size:22px;margin-bottom:6px;">Creá tu cuenta</h2>
+      <p class="muted text-sm" style="margin-bottom:24px;">Elegí tu rol para personalizar el resto del recorrido.</p>
+
+      <div class="role-pick" style="margin-bottom:24px;">
+        <div class="role-card" data-role="estudiante" id="role-estudiante">
+          <div class="icon">🎓</div>
+          <h4>Soy estudiante</h4>
+          <p>Busco alquilar una habitación o depto cerca de mi facultad.</p>
+        </div>
+        <div class="role-card" data-role="propietario" id="role-propietario">
+          <div class="icon">🏠</div>
+          <h4>Tengo un inmueble</h4>
+          <p>Quiero publicarlo para alquilarlo a estudiantes verificados.</p>
+        </div>
+      </div>
+
+      <form id="signup-form">
+        <input type="hidden" id="selected-role" value="estudiante">
+        <div class="field">
+          <label>Nombre completo</label>
+          <input type="text" placeholder="Tomás Fernández" required>
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" placeholder="tomas@mail.com" required>
+        </div>
+        <div class="field">
+          <label>Contraseña</label>
+          <input type="password" placeholder="••••••••" required>
+        </div>
+        <div class="checkbox-row" style="margin-bottom:22px;">
+          <input type="checkbox" id="terms" required>
+          <label for="terms">Acepto los términos y condiciones de Nido</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Crear cuenta y continuar</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="js/app.js"></script>
+<script>
+  // Pre-select role from query string (?rol=estudiante|propietario)
+  const params = new URLSearchParams(window.location.search);
+  const preset = params.get('rol');
+  if (preset === 'propietario') {
+    document.getElementById('role-propietario').click();
+  } else {
+    document.getElementById('role-estudiante').click();
+  }
+
+  document.getElementById('signup-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const role = document.getElementById('selected-role').value;
+    localStorage.setItem('nido-role', role);
+    toast('Cuenta creada. Validando identidad…');
+    setTimeout(() => {
+      window.location.href = role === 'estudiante' ? 'perfil-estudiante.html' : 'perfil-propietario.html';
+    }, 800);
+  });
+</script>
+</body>
+</html>

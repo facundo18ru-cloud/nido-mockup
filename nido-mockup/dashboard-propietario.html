@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis publicaciones — Nido</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="dashboard-propietario.html">
+
+<div id="demo-bar"></div>
+<div id="site-header"></div>
+
+<section class="section-tight">
+  <div class="wrap">
+    <h2 style="font-size:24px;margin-bottom:18px;">Mis publicaciones</h2>
+
+    <div class="dash-layout">
+      <nav class="dash-nav">
+        <a href="#" class="active">Resumen</a>
+        <a href="chat.html">Consultas entrantes</a>
+        <a href="perfil-propietario.html">Publicar otro inmueble</a>
+      </nav>
+
+      <div>
+        <div data-tabs>
+          <div class="tabs">
+            <div class="tab active" data-tab="publicaciones">Publicaciones</div>
+            <div class="tab" data-tab="consultas">Consultas entrantes</div>
+            <div class="tab" data-tab="activo">Alquiler activo</div>
+            <div class="tab" data-tab="reseña">Reseña</div>
+          </div>
+
+          <div class="tab-panel active" data-panel="publicaciones">
+            <div class="metric-row">
+              <div class="card metric"><strong>3</strong><span>Publicaciones activas</span></div>
+              <div class="card metric"><strong>142</strong><span>Vistas este mes</span></div>
+              <div class="card metric"><strong>9</strong><span>Consultas recibidas</span></div>
+            </div>
+            <div class="card card-pad">
+              <table class="simple">
+                <thead><tr><th>Inmueble</th><th>Precio</th><th>Estado</th><th>Vistas</th></tr></thead>
+                <tbody>
+                  <tr><td>Habitación en Palermo</td><td>$185.000</td><td><span class="badge badge-muted">Alquilado</span></td><td>54</td></tr>
+                  <tr><td>Depto entero en Almagro</td><td>$240.000</td><td><span class="badge badge-verified">Activo</span></td><td>61</td></tr>
+                  <tr><td>Depto compartido en Belgrano</td><td>$160.000</td><td><span class="badge badge-pending">Pausado</span></td><td>27</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="tab-panel" data-panel="consultas">
+            <div class="card card-pad">
+              <p class="text-sm muted" style="margin-bottom:14px;">Cada consulta muestra el perfil verificado del estudiante antes de responder.</p>
+              <div class="flex gap-12" style="align-items:center;padding:12px 0;border-bottom:1px solid var(--ink-100);">
+                <div class="avatar">T</div>
+                <div style="flex:1;">
+                  <strong style="font-size:14px;">Tomás F.</strong>
+                  <div class="text-sm muted">UP · Negocios Digitales, 2° año · <span class="badge badge-verified">✓ Verificado</span></div>
+                </div>
+                <a href="chat.html" class="btn btn-secondary btn-sm">Ver conversación</a>
+              </div>
+              <div class="flex gap-12" style="align-items:center;padding:12px 0;">
+                <div class="avatar">L</div>
+                <div style="flex:1;">
+                  <strong style="font-size:14px;">Lucía F.</strong>
+                  <div class="text-sm muted">UBA · Derecho, 4° año · <span class="badge badge-verified">✓ Verificado</span></div>
+                </div>
+                <a href="chat.html" class="btn btn-secondary btn-sm">Ver conversación</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-panel" data-panel="activo">
+            <div class="card card-pad">
+              <span class="badge badge-verified">Contrato vigente</span>
+              <h3 style="font-size:18px;margin:8px 0 16px;">Habitación en Palermo</h3>
+              <div class="detail-row"><span class="k">Inquilino</span><span class="v">Tomás F.</span></div>
+              <div class="detail-row"><span class="k">Monto mensual</span><span class="v">$185.000</span></div>
+              <div class="detail-row"><span class="k">Pagos recibidos</span><span class="v">2 de 5</span></div>
+              <div class="detail-row"><span class="k">Chat</span><span class="v"><a href="chat.html" class="btn btn-ghost btn-sm">Abrir conversación</a></span></div>
+            </div>
+          </div>
+
+          <div class="tab-panel" data-panel="reseña">
+            <div class="card card-pad">
+              <p class="text-sm muted" style="margin-bottom:14px;">El contrato con Tomás vence el 31/07/2026. Al finalizar vas a poder calificarlo.</p>
+              <div class="flex gap-8" style="margin-bottom:14px;font-size:22px;color:var(--ink-300);">★★★★★</div>
+              <textarea placeholder="Contá cómo fue tu experiencia con el inquilino..." disabled></textarea>
+              <button class="btn btn-secondary" style="margin-top:12px;" disabled>Disponible al finalizar el contrato</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="js/app.js"></script>
+</body>
+</html>

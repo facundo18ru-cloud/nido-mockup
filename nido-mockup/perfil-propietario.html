@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publicar inmueble — Nido</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="perfil-propietario.html">
+
+<div id="demo-bar"></div>
+<div id="site-header"></div>
+
+<section class="section-tight">
+  <div class="wrap" style="max-width:680px;">
+    <div class="steps">
+      <div class="step done">1. Registro</div>
+      <div class="step current">2. Publicación</div>
+      <div class="step">3. Activo</div>
+    </div>
+
+    <div class="status-banner approved">
+      <div class="dot">✓</div>
+      <div>
+        <strong>Identidad verificada</strong>
+        <span class="sub">Tu perfil de propietario está activo. Ya podés publicar tu primer inmueble.</span>
+      </div>
+    </div>
+
+    <div class="card card-pad">
+      <h2 style="font-size:20px;margin-bottom:4px;">Publicá tu inmueble</h2>
+      <p class="muted text-sm" style="margin-bottom:20px;">Completá los datos clave. Vas a poder previsualizar la publicación antes de confirmarla.</p>
+
+      <form id="listing-form">
+        <div class="field">
+          <label>Fotos <span class="hint">(mínimo 3)</span></label>
+          <div class="flex gap-12">
+            <div class="card card-pad" style="border-style:dashed;flex:1;text-align:center;color:var(--ink-500);font-size:13px;height:90px;display:flex;align-items:center;justify-content:center;cursor:pointer;">+ Agregar fotos</div>
+          </div>
+        </div>
+        <div class="grid-2" style="gap:16px;">
+          <div class="field">
+            <label>Dirección</label>
+            <input type="text" placeholder="Av. Santa Fe 3500, Palermo" required>
+          </div>
+          <div class="field">
+            <label>Precio mensual</label>
+            <input type="number" placeholder="185000" required>
+          </div>
+        </div>
+        <div class="grid-2" style="gap:16px;">
+          <div class="field">
+            <label>Tipo de alquiler</label>
+            <select required>
+              <option>Habitación</option>
+              <option>Depto compartido</option>
+              <option>Depto entero</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Modalidad</label>
+            <select required>
+              <option>Por cuatrimestre</option>
+              <option>Por año</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Fecha de disponibilidad</label>
+          <input type="date" required>
+        </div>
+        <div class="field">
+          <label>Condiciones</label>
+          <div class="flex gap-16">
+            <label class="checkbox-row"><input type="checkbox" checked> Acepta mascotas</label>
+            <label class="checkbox-row"><input type="checkbox"> Acepta fumadores</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Previsualizar publicación</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="js/app.js"></script>
+<script>
+  document.getElementById('listing-form').addEventListener('submit', e => {
+    e.preventDefault();
+    toast('Publicación creada — activa y visible para estudiantes');
+    setTimeout(() => window.location.href = 'dashboard-propietario.html', 800);
+  });
+</script>
+</body>
+</html>

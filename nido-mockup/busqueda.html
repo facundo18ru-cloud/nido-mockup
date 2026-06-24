@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buscar alquiler — Nido</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="busqueda.html">
+
+<div id="demo-bar"></div>
+<div id="site-header"></div>
+
+<section class="section-tight">
+  <div class="wrap">
+    <h2 style="font-size:24px;margin-bottom:18px;">Buscar alquiler</h2>
+
+    <div class="search-bar">
+      <div class="field">
+        <label>Zona o distancia a facultad</label>
+        <select><option>Hasta 15 min de Universidad de Palermo</option><option>Palermo</option><option>Almagro</option><option>Belgrano</option></select>
+      </div>
+      <div class="field">
+        <label>Precio máximo</label>
+        <select><option>$250.000</option><option>$200.000</option><option>$150.000</option></select>
+      </div>
+      <div class="field">
+        <label>Tipo</label>
+        <select><option>Todos</option><option>Habitación</option><option>Depto compartido</option><option>Depto entero</option></select>
+      </div>
+      <div class="field">
+        <label>Fecha de entrada</label>
+        <input type="date">
+      </div>
+      <button class="btn btn-primary">Buscar</button>
+    </div>
+
+    <div class="results-layout">
+      <div>
+        <p class="muted text-sm" style="margin-bottom:14px;">12 resultados cerca de Universidad de Palermo</p>
+        <div class="listing-grid">
+
+          <a href="ficha.html" class="card card-hover listing-card">
+            <div class="thumb">🏠</div>
+            <div class="body">
+              <div class="flex-between">
+                <div class="price">$185.000 <span>/ mes</span></div>
+                <span class="badge badge-verified">✓</span>
+              </div>
+              <div class="meta">Habitación privada · Palermo · 8 min a UP</div>
+              <div class="tags"><span class="tag">Cuatrimestral</span><span class="tag">Mascotas OK</span></div>
+            </div>
+          </a>
+
+          <a href="ficha.html" class="card card-hover listing-card">
+            <div class="thumb">🏢</div>
+            <div class="body">
+              <div class="flex-between">
+                <div class="price">$240.000 <span>/ mes</span></div>
+                <span class="badge badge-verified">✓</span>
+              </div>
+              <div class="meta">Depto entero · Almagro · 12 min a UP</div>
+              <div class="tags"><span class="tag">Anual</span></div>
+            </div>
+          </a>
+
+          <a href="ficha.html" class="card card-hover listing-card">
+            <div class="thumb">🛏️</div>
+            <div class="body">
+              <div class="flex-between">
+                <div class="price">$160.000 <span>/ mes</span></div>
+                <span class="badge badge-verified">✓</span>
+              </div>
+              <div class="meta">Depto compartido · Palermo · 5 min a UP</div>
+              <div class="tags"><span class="tag">Cuatrimestral</span></div>
+            </div>
+          </a>
+
+          <a href="ficha.html" class="card card-hover listing-card">
+            <div class="thumb">🏡</div>
+            <div class="body">
+              <div class="flex-between">
+                <div class="price">$210.000 <span>/ mes</span></div>
+                <span class="badge badge-pending">En revisión</span>
+              </div>
+              <div class="meta">Habitación privada · Belgrano · 15 min a UP</div>
+              <div class="tags"><span class="tag">Anual</span><span class="tag">Mascotas OK</span></div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+      <div class="map-placeholder">
+        <div class="pin" style="top:60px;left:90px;"></div>
+        <div class="pin" style="top:140px;left:200px;"></div>
+        <div class="pin" style="top:220px;left:130px;"></div>
+        <div class="pin" style="top:90px;left:260px;"></div>
+        Mapa con oferta georreferenciada
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="js/app.js"></script>
+</body>
+</html>

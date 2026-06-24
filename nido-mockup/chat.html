@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mensajes — Nido</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="chat.html">
+
+<div id="demo-bar"></div>
+<div id="site-header"></div>
+
+<section class="section-tight">
+  <div class="wrap">
+    <h2 style="font-size:24px;margin-bottom:18px;">Mensajes</h2>
+
+    <div class="chat-shell">
+      <div class="chat-list">
+        <div class="chat-item active" data-thread="1" data-name="Graciela M. — Habitación en Palermo">
+          <div class="avatar">G</div>
+          <div class="meta"><strong>Graciela M.</strong><span>Perfecto, quedamos así.</span></div>
+        </div>
+        <div class="chat-item" data-thread="2" data-name="Martín R. — Depto en Almagro">
+          <div class="avatar">M</div>
+          <div class="meta"><strong>Martín R.</strong><span>¿Te sirve visitarlo el sábado?</span></div>
+        </div>
+        <div class="chat-item" data-thread="3" data-name="Lucía F. — Depto compartido">
+          <div class="avatar">L</div>
+          <div class="meta"><strong>Lucía F.</strong><span>Te paso el link del contrato.</span></div>
+        </div>
+      </div>
+
+      <div class="chat-main">
+        <div class="chat-head">
+          <div class="avatar">G</div>
+          <div class="who"><strong>Graciela M. — Habitación en Palermo</strong></div>
+          <div style="margin-left:auto;">
+            <a href="ficha.html" class="btn btn-ghost btn-sm">Ver ficha del inmueble</a>
+          </div>
+        </div>
+        <div class="chat-notice">Sin intercambio de teléfonos · historial persistente dentro de Nido</div>
+        <div class="chat-body">
+          <div class="bubble them">Hola Tomás! Vi que te interesó la habitación, ¿seguís buscando para marzo? <span class="t">10:02</span></div>
+          <div class="bubble me">Sí! ¿Sigue disponible? Soy estudiante de 2° año en UP. <span class="t">10:05</span></div>
+          <div class="bubble them">Sigue disponible. Vi tu perfil verificado, todo en orden. ¿Querés coordinar una visita? <span class="t">10:07</span></div>
+          <div class="bubble me">Me viene bien el sábado a la tarde. <span class="t">10:08</span></div>
+          <div class="bubble them">Perfecto, quedamos así. <span class="t">10:09</span></div>
+        </div>
+        <form id="chat-send" class="chat-input">
+          <input type="text" placeholder="Escribí un mensaje...">
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="flex" style="justify-content:flex-end;margin-top:18px;">
+      <a href="contrato.html" class="btn btn-secondary">Generar / revisar contrato →</a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="js/app.js"></script>
+</body>
+</html>

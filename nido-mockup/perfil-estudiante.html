@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi perfil — Nido</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="perfil-estudiante.html">
+
+<div id="demo-bar"></div>
+<div id="site-header"></div>
+
+<section class="section-tight">
+  <div class="wrap" style="max-width:640px;">
+    <div class="steps">
+      <div class="step done">1. Registro</div>
+      <div class="step current">2. Perfil</div>
+      <div class="step">3. Activo</div>
+    </div>
+
+    <div class="status-banner approved">
+      <div class="dot">✓</div>
+      <div>
+        <strong>Identidad verificada</strong>
+        <span class="sub">Tu cuenta fue aprobada. Ya podés completar tu perfil y empezar a buscar.</span>
+      </div>
+    </div>
+
+    <div class="card card-pad">
+      <h2 style="font-size:20px;margin-bottom:4px;">Construí tu perfil</h2>
+      <p class="muted text-sm" style="margin-bottom:20px;">Esta información es lo que va a ver cada propietario antes de responderte. Cuanto más completo, más confianza generás.</p>
+
+      <form id="profile-form">
+        <div class="grid-2" style="gap:16px;">
+          <div class="field">
+            <label>Facultad</label>
+            <select required>
+              <option>Universidad de Palermo</option>
+              <option>UBA</option>
+              <option>UCA</option>
+              <option>UTDT</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Carrera</label>
+            <input type="text" placeholder="Negocios Digitales" required>
+          </div>
+        </div>
+        <div class="grid-2" style="gap:16px;">
+          <div class="field">
+            <label>Año que cursa</label>
+            <select required>
+              <option>1°</option><option selected>2°</option><option>3°</option><option>4°</option><option>5°</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Ciudad de origen</label>
+            <input type="text" placeholder="Córdoba" required>
+          </div>
+        </div>
+        <div class="field">
+          <label>Descripción libre</label>
+          <textarea placeholder="Contale al propietario quién sos: hábitos, rutina, qué buscás en una convivencia..."></textarea>
+        </div>
+        <div class="field">
+          <label>Constancia de alumno regular <span class="hint">(opcional)</span></label>
+          <div class="card card-pad" style="border-style:dashed;text-align:center;color:var(--ink-500);font-size:13px;cursor:pointer;">
+            📄 Hacé clic para subir tu constancia (PDF o imagen)
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Guardar perfil</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="js/app.js"></script>
+<script>
+  document.getElementById('profile-form').addEventListener('submit', e => {
+    e.preventDefault();
+    toast('Perfil guardado — visible para propietarios con badge "Verificado"');
+    setTimeout(() => window.location.href = 'busqueda.html', 800);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contrato — Nido</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="contrato.html">
+
+<div id="demo-bar"></div>
+<div id="site-header"></div>
+
+<section class="section-tight">
+  <div class="wrap" style="max-width:760px;">
+    <div class="flex-between" style="margin-bottom:18px;">
+      <h2 style="font-size:24px;">Contrato de alquiler temporario</h2>
+      <span class="badge badge-pending">Pendiente de firma</span>
+    </div>
+
+    <div class="card card-pad" style="margin-bottom:20px;">
+      <h3 style="font-size:15px;margin-bottom:10px;margin-top:0;">Campos variables</h3>
+      <div class="grid-2" style="gap:16px;">
+        <div class="field"><label>Monto mensual</label><input type="text" value="$185.000"></div>
+        <div class="field"><label>Depósito</label><input type="text" value="1 mes de garantía"></div>
+        <div class="field"><label>Fecha de inicio</label><input type="date" value="2026-03-01"></div>
+        <div class="field"><label>Fecha de finalización</label><input type="date" value="2026-07-31"></div>
+      </div>
+    </div>
+
+    <div class="contract-doc" style="margin-bottom:24px;">
+      <h3>1. Partes</h3>
+      <p>Entre <strong>Graciela M.</strong> (en adelante, "el Propietario"), titular del inmueble sito en Av. Santa Fe 3500, Palermo, CABA, y <strong>Tomás F.</strong> (en adelante, "el Inquilino"), estudiante verificado de Universidad de Palermo, se celebra el presente contrato de alquiler temporario.</p>
+      <h3>2. Objeto</h3>
+      <p>El Propietario cede en alquiler una habitación privada dentro del inmueble mencionado, por el período y monto indicados en los campos variables de este documento.</p>
+      <h3>3. Duración</h3>
+      <p>El presente contrato rige desde la fecha de inicio hasta la fecha de finalización indicadas, correspondiente a un período cuatrimestral.</p>
+      <h3>4. Depósito en garantía</h3>
+      <p>El Inquilino entrega el depósito indicado como garantía, reembolsable al finalizar el contrato sujeto al estado del inmueble.</p>
+      <h3>5. Firmas</h3>
+      <p>Ambas partes firman digitalmente el presente documento dentro de la plataforma Nido, constituyendo comprobante válido para ambas partes.</p>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:24px;">
+      <div>
+        <p class="text-sm" style="font-weight:700;margin-bottom:8px;">Firma del propietario</p>
+        <div class="sign-pad" data-signature="Graciela M.">Hacé clic para firmar</div>
+      </div>
+      <div>
+        <p class="text-sm" style="font-weight:700;margin-bottom:8px;">Firma del inquilino</p>
+        <div class="sign-pad" data-signature="Tomás F.">Hacé clic para firmar</div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-block" data-finish-contract disabled id="finish-btn">Confirmar contrato firmado</button>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="js/app.js"></script>
+<script>
+  document.getElementById('finish-btn').addEventListener('click', () => {
+    if (document.getElementById('finish-btn').disabled) return;
+    toast('Contrato firmado — comprobante disponible para ambas partes');
+    setTimeout(() => {
+      const role = localStorage.getItem('nido-role') || 'estudiante';
+      window.location.href = role === 'estudiante' ? 'dashboard-estudiante.html' : 'dashboard-propietario.html';
+    }, 900);
+  });
+  // re-check button state after sign pads load (app.js initSignPad runs on DOMContentLoaded too)
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.sign-pad').forEach(p => p.addEventListener('click', () => {
+      const all = document.querySelectorAll('.sign-pad');
+      document.getElementById('finish-btn').disabled = ![...all].every(x => x.classList.contains('signed'));
+    }));
+  });
+</script>
+</body>
+</html>
