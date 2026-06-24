@@ -2,13 +2,13 @@
 
 Prototipo navegable de **Nido**, la plataforma de alquiler temporal para estudiantes universitarios desarrollada como proyecto de la materia *Metodologías Ágiles y Trabajos por Proyectos* (Universidad de Palermo).
 
-🔗 **Demo en vivo:** _(se completa al activar GitHub Pages — ver abajo)_
+🔗 **Demo en vivo:** https://facundo18ru-cloud.github.io/nido-mockup/
 
 ## Sobre el proyecto
 
-Nido resuelve la fricción de acceso al mercado de alquiler para estudiantes sin garantía propietaria, centralizando oferta, perfiles verificados, chat interno y contrato digital en una sola plataforma. El reto, la investigación de usuarios y la pila de producto están documentados en `proyecto_business_innovation_part1.pdf` y `part2.pdf` en la carpeta raíz del repo.
+Nido resuelve la fricción de acceso al mercado de alquiler para estudiantes sin garantía propietaria, centralizando oferta, perfiles verificados, chat interno y contrato digital en una sola plataforma. El reto, la investigación de usuarios y la pila de producto están documentados en `docs-fuente/proyecto_business_innovation_part1.pdf` y `part2.pdf`.
 
-Este mockup cubre el recorrido completo de los dos perfiles de usuario definidos en `nudo_user_path.pdf`:
+Este mockup cubre el recorrido completo de los dos perfiles de usuario definidos en `docs-fuente/nudo_user_path.pdf`:
 
 - **Tomás (estudiante):** registro → perfil verificado → búsqueda → ficha del inmueble → chat → contrato → panel de alquiler activo → reseña.
 - **Graciela (propietario):** registro → publicación del inmueble → panel de publicaciones → consultas entrantes → chat → generación de contrato → panel de alquiler activo → reseña.
@@ -22,7 +22,7 @@ Arriba de cada página hay un selector **"Ver como Tomás / Ver como Graciela"**
 ## Estructura
 
 ```
-nido-mockup/
+.
 ├── index.html                 Landing
 ├── registro.html               Registro + selección de rol
 ├── perfil-estudiante.html      Construcción de perfil (Tomás)
@@ -34,7 +34,8 @@ nido-mockup/
 ├── dashboard-estudiante.html     Panel del inquilino (alquiler activo, pagos, reseña)
 ├── dashboard-propietario.html    Panel del propietario (publicaciones, consultas, alquiler activo, reseña)
 ├── css/styles.css                Sistema de diseño
-└── js/app.js                     Layout compartido + interactividad
+├── js/app.js                     Layout compartido + interactividad
+└── docs-fuente/                  PDFs del proyecto original (Partes I y II, user path)
 ```
 
 ## Correrlo localmente
@@ -42,18 +43,13 @@ nido-mockup/
 No requiere build ni dependencias. Alcanza con abrir `index.html` en el navegador, o servirlo con:
 
 ```bash
-cd nido-mockup
 python3 -m http.server 8080
 # abrir http://localhost:8080
 ```
 
 ## Publicarlo en GitHub Pages
 
-1. `git init` en la raíz del repo (si todavía no se hizo).
-2. `git add` y `git commit` de los archivos.
-3. Crear el repositorio en GitHub y hacer `git push`.
-4. En GitHub → **Settings → Pages**, elegir la rama `main` y la carpeta `/nido-mockup` (o mover el contenido a la raíz) como source.
-5. GitHub publica el sitio en `https://<usuario>.github.io/<repo>/`.
+El repo ya está configurado para esto: GitHub Pages sirve directamente desde la raíz de la rama `main` (Settings → Pages → Source: Deploy from a branch → main → / root). El sitio queda publicado en `https://<usuario>.github.io/<repo>/`.
 
 ## Equipo
 
