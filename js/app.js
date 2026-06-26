@@ -61,52 +61,103 @@ function checkAllSigned() {
   if (btn) btn.disabled = !allSigned;
 }
 
-// Chat threads — each conversation has its own people, property and history,
-// keyed by the data-thread id set on the .chat-item in chat.html.
+// Chat threads — each role sees a different inbox, because Tomás (estudiante)
+// messages several owners about their listings, while Graciela (propietario)
+// only gets contacted by students interested in HER properties. Keyed by role,
+// then by thread id.
 const CHAT_THREADS = {
-  1: {
-    name: 'Graciela M.',
-    property: 'Habitación en Palermo',
-    avatar: 'G',
-    listingHref: 'ficha.html',
-    messages: [
-      { from: 'them', text: 'Hola Tomás! Vi que te interesó la habitación, ¿seguís buscando para marzo?', time: '10:02' },
-      { from: 'me', text: 'Sí! ¿Sigue disponible? Soy estudiante de 2° año en UP.', time: '10:05' },
-      { from: 'them', text: 'Sigue disponible. Vi tu perfil verificado, todo en orden. ¿Querés coordinar una visita?', time: '10:07' },
-      { from: 'me', text: 'Me viene bien el sábado a la tarde.', time: '10:08' },
-      { from: 'them', text: 'Perfecto, quedamos así.', time: '10:09' },
-    ],
+  estudiante: {
+    1: {
+      name: 'Graciela M.',
+      property: 'Habitación en Palermo',
+      avatar: 'G',
+      preview: 'Perfecto, quedamos así.',
+      listingHref: 'ficha.html',
+      messages: [
+        { from: 'them', text: 'Hola Tomás! Vi que te interesó la habitación, ¿seguís buscando para marzo?', time: '10:02' },
+        { from: 'me', text: 'Sí! ¿Sigue disponible? Soy estudiante de 2° año en UP.', time: '10:05' },
+        { from: 'them', text: 'Sigue disponible. Vi tu perfil verificado, todo en orden. ¿Querés coordinar una visita?', time: '10:07' },
+        { from: 'me', text: 'Me viene bien el sábado a la tarde.', time: '10:08' },
+        { from: 'them', text: 'Perfecto, quedamos así.', time: '10:09' },
+      ],
+    },
+    2: {
+      name: 'Martín R.',
+      property: 'Depto entero en Almagro',
+      avatar: 'M',
+      preview: '¿Te sirve visitarlo el sábado?',
+      listingHref: 'ficha.html',
+      messages: [
+        { from: 'them', text: 'Hola, gracias por tu interés en el depto de Almagro.', time: '09:14' },
+        { from: 'me', text: 'Hola Martín, quería saber si acepta mascotas.', time: '09:20' },
+        { from: 'them', text: 'No, este en particular no acepta. ¿Te sirve igual?', time: '09:25' },
+        { from: 'me', text: 'No tengo mascota, así que sí, no hay problema.', time: '09:26' },
+        { from: 'them', text: '¿Te sirve visitarlo el sábado?', time: '09:30' },
+      ],
+    },
+    3: {
+      name: 'Lucía F.',
+      property: 'Depto compartido en Palermo',
+      avatar: 'L',
+      preview: 'Te paso el link del contrato.',
+      listingHref: 'ficha.html',
+      messages: [
+        { from: 'them', text: 'Hola! Vi tu perfil, encajás bien con la convivencia que buscamos.', time: '14:40' },
+        { from: 'me', text: 'Genial, ¿cuándo podría mudarme?', time: '14:55' },
+        { from: 'them', text: 'Está libre desde el 1 de marzo. Si te interesa armamos el contrato.', time: '15:02' },
+        { from: 'me', text: 'Sí, me interesa.', time: '15:05' },
+        { from: 'them', text: 'Te paso el link del contrato.', time: '15:06' },
+      ],
+    },
   },
-  2: {
-    name: 'Martín R.',
-    property: 'Depto entero en Almagro',
-    avatar: 'M',
-    listingHref: 'ficha.html',
-    messages: [
-      { from: 'them', text: 'Hola, gracias por tu interés en el depto de Almagro.', time: '09:14' },
-      { from: 'me', text: 'Hola Martín, quería saber si acepta mascotas.', time: '09:20' },
-      { from: 'them', text: 'No, este en particular no acepta. ¿Te sirve igual?', time: '09:25' },
-      { from: 'me', text: 'No tengo mascota, así que sí, no hay problema.', time: '09:26' },
-      { from: 'them', text: '¿Te sirve visitarlo el sábado?', time: '09:30' },
-    ],
-  },
-  3: {
-    name: 'Lucía F.',
-    property: 'Depto compartido en Palermo',
-    avatar: 'L',
-    listingHref: 'ficha.html',
-    messages: [
-      { from: 'them', text: 'Hola! Vi tu perfil, encajás bien con la convivencia que buscamos.', time: '14:40' },
-      { from: 'me', text: 'Genial, ¿cuándo podría mudarme?', time: '14:55' },
-      { from: 'them', text: 'Está libre desde el 1 de marzo. Si te interesa armamos el contrato.', time: '15:02' },
-      { from: 'me', text: 'Sí, me interesa.', time: '15:05' },
-      { from: 'them', text: 'Te paso el link del contrato.', time: '15:06' },
-    ],
+  propietario: {
+    1: {
+      name: 'Tomás F.',
+      property: 'Consulta: Habitación en Palermo',
+      avatar: 'T',
+      preview: 'Me viene bien el sábado a la tarde.',
+      listingHref: 'ficha.html',
+      messages: [
+        { from: 'me', text: 'Hola Tomás! Vi que te interesó la habitación, ¿seguís buscando para marzo?', time: '10:02' },
+        { from: 'them', text: 'Sí! ¿Sigue disponible? Soy estudiante de 2° año en UP.', time: '10:05' },
+        { from: 'me', text: 'Sigue disponible. Vi tu perfil verificado, todo en orden. ¿Querés coordinar una visita?', time: '10:07' },
+        { from: 'them', text: 'Me viene bien el sábado a la tarde.', time: '10:08' },
+        { from: 'me', text: 'Perfecto, quedamos así.', time: '10:09' },
+      ],
+    },
+    2: {
+      name: 'Sofía A.',
+      property: 'Consulta: Habitación en Palermo',
+      avatar: 'S',
+      preview: '¿Las expensas están incluidas?',
+      listingHref: 'ficha.html',
+      messages: [
+        { from: 'them', text: 'Hola! Vi la publicación de la habitación, está buenísima.', time: '11:40' },
+        { from: 'me', text: 'Hola Sofía, gracias! ¿En qué te puedo ayudar?', time: '11:42' },
+        { from: 'them', text: '¿Las expensas están incluidas en el precio?', time: '11:43' },
+      ],
+    },
+    3: {
+      name: 'Bruno S.',
+      property: 'Consulta: Depto entero en Almagro',
+      avatar: 'B',
+      preview: '¿Puedo ir a verlo este finde?',
+      listingHref: 'ficha.html',
+      messages: [
+        { from: 'them', text: 'Hola Graciela, vi tu depto en Almagro. Soy estudiante de Ingeniería en la UBA.', time: '08:50' },
+        { from: 'me', text: 'Hola Bruno! Sí, sigue disponible. Vi tu perfil verificado.', time: '09:00' },
+        { from: 'them', text: '¿Puedo ir a verlo este finde?', time: '09:02' },
+      ],
+    },
   },
 };
 
+function getThreads() {
+  return CHAT_THREADS[getRole()] || CHAT_THREADS.estudiante;
+}
+
 function renderThread(threadId) {
-  const thread = CHAT_THREADS[threadId];
+  const thread = getThreads()[threadId];
   if (!thread) return;
   const head = document.querySelector('.chat-head .who strong');
   const avatar = document.querySelector('.chat-head .avatar');
@@ -122,13 +173,25 @@ function renderThread(threadId) {
   body && (body.dataset.activeThread = threadId);
 }
 
+function renderChatList() {
+  const mount = document.getElementById('chat-list');
+  if (!mount) return;
+  const threads = getThreads();
+  mount.innerHTML = Object.entries(threads).map(([id, t], i) => `
+    <div class="chat-item ${i === 0 ? 'active' : ''}" data-thread="${id}">
+      <div class="avatar">${t.avatar}</div>
+      <div class="meta"><strong>${t.name}</strong><span>${t.preview}</span></div>
+    </div>`).join('');
+}
+
 // Chat thread switching + send simulation on chat.html
 function initChat() {
-  const list = document.querySelectorAll('.chat-item[data-thread]');
-  if (!list.length) return;
+  const mount = document.getElementById('chat-list');
+  if (!mount) return;
 
-  const initial = list[0].dataset.thread;
-  renderThread(initial);
+  renderChatList();
+  const list = mount.querySelectorAll('.chat-item[data-thread]');
+  renderThread(list[0].dataset.thread);
 
   list.forEach(item => {
     item.addEventListener('click', () => {
@@ -153,7 +216,6 @@ function initChat() {
       body.scrollTop = body.scrollHeight;
       input.value = '';
       setTimeout(() => {
-        const thread = CHAT_THREADS[body.dataset.activeThread];
         const reply = document.createElement('div');
         reply.className = 'bubble them';
         reply.innerHTML = `Perfecto, quedamos así. <span class="t">${time}</span>`;
