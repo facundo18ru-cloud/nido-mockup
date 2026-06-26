@@ -15,18 +15,32 @@
   <div class="wrap">
     <h2 style="font-size:24px;margin-bottom:18px;">Buscar alquiler</h2>
 
-    <div class="search-bar">
+    <div class="search-bar" data-filters>
       <div class="field">
         <label>Zona o distancia a facultad</label>
-        <select><option>Hasta 15 min de Universidad de Palermo</option><option>Palermo</option><option>Almagro</option><option>Belgrano</option></select>
+        <select name="zone">
+          <option value="todas">Todas las zonas</option>
+          <option value="palermo">Palermo</option>
+          <option value="almagro">Almagro</option>
+          <option value="belgrano">Belgrano</option>
+        </select>
       </div>
       <div class="field">
         <label>Precio máximo</label>
-        <select><option>$250.000</option><option>$200.000</option><option>$150.000</option></select>
+        <select name="price">
+          <option value="250000">$250.000</option>
+          <option value="200000">$200.000</option>
+          <option value="150000">$150.000</option>
+        </select>
       </div>
       <div class="field">
         <label>Tipo</label>
-        <select><option>Todos</option><option>Habitación</option><option>Depto compartido</option><option>Depto entero</option></select>
+        <select name="type">
+          <option value="todos">Todos</option>
+          <option value="habitacion">Habitación</option>
+          <option value="compartido">Depto compartido</option>
+          <option value="entero">Depto entero</option>
+        </select>
       </div>
       <div class="field">
         <label>Fecha de entrada</label>
@@ -37,11 +51,11 @@
 
     <div class="results-layout">
       <div>
-        <p class="muted text-sm" style="margin-bottom:14px;">12 resultados cerca de Universidad de Palermo</p>
+        <p class="muted text-sm" data-results-count style="margin-bottom:14px;">4 resultados cerca de Universidad de Palermo</p>
         <div class="listing-grid">
 
-          <a href="ficha.html" class="card card-hover listing-card">
-            <div class="thumb">🏠</div>
+          <a href="ficha.html" class="card card-hover listing-card" data-price="185000" data-zone="palermo" data-type="habitacion">
+            <div class="thumb" data-img="assets/properties/palermo-habitacion.jpg">🏠</div>
             <div class="body">
               <div class="flex-between">
                 <div class="price">$185.000 <span>/ mes</span></div>
@@ -52,8 +66,8 @@
             </div>
           </a>
 
-          <a href="ficha.html" class="card card-hover listing-card">
-            <div class="thumb">🏢</div>
+          <a href="ficha.html" class="card card-hover listing-card" data-price="240000" data-zone="almagro" data-type="entero">
+            <div class="thumb" data-img="assets/properties/almagro-depto.jpg">🏢</div>
             <div class="body">
               <div class="flex-between">
                 <div class="price">$240.000 <span>/ mes</span></div>
@@ -64,8 +78,8 @@
             </div>
           </a>
 
-          <a href="ficha.html" class="card card-hover listing-card">
-            <div class="thumb">🛏️</div>
+          <a href="ficha.html" class="card card-hover listing-card" data-price="160000" data-zone="palermo" data-type="compartido">
+            <div class="thumb" data-img="assets/properties/palermo-compartido.jpg">🛏️</div>
             <div class="body">
               <div class="flex-between">
                 <div class="price">$160.000 <span>/ mes</span></div>
@@ -76,8 +90,8 @@
             </div>
           </a>
 
-          <a href="ficha.html" class="card card-hover listing-card">
-            <div class="thumb">🏡</div>
+          <a href="ficha.html" class="card card-hover listing-card" data-price="210000" data-zone="belgrano" data-type="habitacion">
+            <div class="thumb" data-img="assets/properties/belgrano-habitacion.jpg">🏡</div>
             <div class="body">
               <div class="flex-between">
                 <div class="price">$210.000 <span>/ mes</span></div>

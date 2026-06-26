@@ -61,17 +61,80 @@ function checkAllSigned() {
   if (btn) btn.disabled = !allSigned;
 }
 
+// Chat threads — each conversation has its own people, property and history,
+// keyed by the data-thread id set on the .chat-item in chat.html.
+const CHAT_THREADS = {
+  1: {
+    name: 'Graciela M.',
+    property: 'Habitación en Palermo',
+    avatar: 'G',
+    listingHref: 'ficha.html',
+    messages: [
+      { from: 'them', text: 'Hola Tomás! Vi que te interesó la habitación, ¿seguís buscando para marzo?', time: '10:02' },
+      { from: 'me', text: 'Sí! ¿Sigue disponible? Soy estudiante de 2° año en UP.', time: '10:05' },
+      { from: 'them', text: 'Sigue disponible. Vi tu perfil verificado, todo en orden. ¿Querés coordinar una visita?', time: '10:07' },
+      { from: 'me', text: 'Me viene bien el sábado a la tarde.', time: '10:08' },
+      { from: 'them', text: 'Perfecto, quedamos así.', time: '10:09' },
+    ],
+  },
+  2: {
+    name: 'Martín R.',
+    property: 'Depto entero en Almagro',
+    avatar: 'M',
+    listingHref: 'ficha.html',
+    messages: [
+      { from: 'them', text: 'Hola, gracias por tu interés en el depto de Almagro.', time: '09:14' },
+      { from: 'me', text: 'Hola Martín, quería saber si acepta mascotas.', time: '09:20' },
+      { from: 'them', text: 'No, este en particular no acepta. ¿Te sirve igual?', time: '09:25' },
+      { from: 'me', text: 'No tengo mascota, así que sí, no hay problema.', time: '09:26' },
+      { from: 'them', text: '¿Te sirve visitarlo el sábado?', time: '09:30' },
+    ],
+  },
+  3: {
+    name: 'Lucía F.',
+    property: 'Depto compartido en Palermo',
+    avatar: 'L',
+    listingHref: 'ficha.html',
+    messages: [
+      { from: 'them', text: 'Hola! Vi tu perfil, encajás bien con la convivencia que buscamos.', time: '14:40' },
+      { from: 'me', text: 'Genial, ¿cuándo podría mudarme?', time: '14:55' },
+      { from: 'them', text: 'Está libre desde el 1 de marzo. Si te interesa armamos el contrato.', time: '15:02' },
+      { from: 'me', text: 'Sí, me interesa.', time: '15:05' },
+      { from: 'them', text: 'Te paso el link del contrato.', time: '15:06' },
+    ],
+  },
+};
+
+function renderThread(threadId) {
+  const thread = CHAT_THREADS[threadId];
+  if (!thread) return;
+  const head = document.querySelector('.chat-head .who strong');
+  const avatar = document.querySelector('.chat-head .avatar');
+  const body = document.querySelector('.chat-body');
+  if (head) head.textContent = `${thread.name} — ${thread.property}`;
+  if (avatar) avatar.textContent = thread.avatar;
+  if (body) {
+    body.innerHTML = thread.messages.map(m =>
+      `<div class="bubble ${m.from === 'me' ? 'me' : 'them'}">${m.text} <span class="t">${m.time}</span></div>`
+    ).join('');
+    body.scrollTop = body.scrollHeight;
+  }
+  body && (body.dataset.activeThread = threadId);
+}
+
 // Chat thread switching + send simulation on chat.html
 function initChat() {
   const list = document.querySelectorAll('.chat-item[data-thread]');
   if (!list.length) return;
+
+  const initial = list[0].dataset.thread;
+  renderThread(initial);
+
   list.forEach(item => {
     item.addEventListener('click', () => {
       list.forEach(i => i.classList.remove('active'));
       item.classList.add('active');
-      const name = item.dataset.name;
-      const head = document.querySelector('.chat-head .who strong');
-      if (head) head.textContent = name;
+      renderThread(item.dataset.thread);
     });
   });
 
@@ -90,6 +153,7 @@ function initChat() {
       body.scrollTop = body.scrollHeight;
       input.value = '';
       setTimeout(() => {
+        const thread = CHAT_THREADS[body.dataset.activeThread];
         const reply = document.createElement('div');
         reply.className = 'bubble them';
         reply.innerHTML = `Perfecto, quedamos así. <span class="t">${time}</span>`;
@@ -98,6 +162,60 @@ function initChat() {
       }, 900);
     });
   }
+}
+
+// Property photos — elements declare [data-img="assets/properties/x.jpg"].
+// If the file doesn't exist yet, the element keeps its gradient + emoji placeholder.
+function initPhotos() {
+  document.querySelectorAll('[data-img]').forEach(el => {
+    const src = el.dataset.img;
+    const probe = new Image();
+    probe.onload = () => {
+      el.style.backgroundImage = `url('${src}')`;
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+      el.textContent = '';
+    };
+    probe.src = src;
+  });
+}
+
+// Search filters on busqueda.html — filters the listing-grid cards by
+// data-price / data-type / data-zone attributes set on each .listing-card.
+function initSearchFilters() {
+  const bar = document.querySelector('.search-bar[data-filters]');
+  if (!bar) return;
+  const zoneSelect = bar.querySelector('[name="zone"]');
+  const priceSelect = bar.querySelector('[name="price"]');
+  const typeSelect = bar.querySelector('[name="type"]');
+  const button = bar.querySelector('button');
+  const cards = document.querySelectorAll('.listing-grid .listing-card');
+  const countLabel = document.querySelector('[data-results-count]');
+
+  function apply() {
+    const maxPrice = priceSelect ? Number(priceSelect.value) : Infinity;
+    const zone = zoneSelect ? zoneSelect.value : 'todas';
+    const type = typeSelect ? typeSelect.value : 'todos';
+    let visible = 0;
+    cards.forEach(card => {
+      const price = Number(card.dataset.price || 0);
+      const cardZone = card.dataset.zone || '';
+      const cardType = card.dataset.type || '';
+      const matches = price <= maxPrice
+        && (zone === 'todas' || cardZone === zone)
+        && (type === 'todos' || cardType === type);
+      card.style.display = matches ? '' : 'none';
+      if (matches) visible++;
+    });
+    if (countLabel) {
+      countLabel.textContent = visible === 0
+        ? 'Ningún resultado con esos filtros'
+        : `${visible} resultado${visible === 1 ? '' : 's'} cerca de Universidad de Palermo`;
+    }
+  }
+
+  if (button) button.addEventListener('click', e => { e.preventDefault(); apply(); });
+  [zoneSelect, priceSelect, typeSelect].forEach(sel => sel && sel.addEventListener('change', apply));
 }
 
 // Generic "fake submit" — prevents real navigation away mid-form, shows toast, then redirects
@@ -202,5 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRolePick();
   initSignPad();
   initChat();
+  initPhotos();
+  initSearchFilters();
   initFakeForms();
 });
