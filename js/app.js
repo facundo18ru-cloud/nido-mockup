@@ -352,7 +352,7 @@ function renderHeader() {
   mount.outerHTML = `
   <header class="site" id="site-header">
     <div class="wrap">
-      <a href="index.html" class="brand"><span class="mark">N</span> Nido</a>
+      <a href="index.html" class="brand"><span class="mark">N</span> Nido <span class="brand-tagline">Confianza que abre puertas</span></a>
       <nav class="main">${links}</nav>
       <div class="nav-actions">
         <span class="text-sm muted" style="display:none" id="role-name">${name}</span>
@@ -368,8 +368,8 @@ function renderFooter() {
   mount.outerHTML = `
   <footer class="site" id="site-footer">
     <div class="wrap">
-      <span>© 2026 Nido — Mockup académico, Metodologías Ágiles, Universidad de Palermo.</span>
-      <span>Grupo: Invernizzi, Ruiz, Sánchez Navarro, Sosa Colello, Yolde</span>
+      <span><strong>Nido</strong> · <em>Confianza que abre puertas</em></span>
+      <span>© 2026 · Mockup académico, Business Innovation, Universidad de Palermo · Invernizzi, Ruiz, Sánchez Navarro, Sosa Colello, Yolde</span>
     </div>
   </footer>`;
 }
